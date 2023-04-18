@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Game2048.MainPage"
+             xmlns:local="clr-namespace:Game2048.ViewModel">
+    <ContentPage.Resources>
+        <local:BoardViewModel x:Key="drawable" />
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <local:BoardViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <GraphicsView   Drawable="{StaticResource drawable}"  
+                      HeightRequest="{Binding BoardSize}"
+                      WidthRequest="{Binding BoardSize}"
+                            MinimumHeightRequest="{Binding BoardSize}"
+                            MinimumWidthRequest="{Binding BoardSize}"
+                            MaximumHeightRequest="{Binding BoardSize}"
+                            MaximumWidthRequest="{Binding BoardSize}" BackgroundColor="#DB4949"
+                          />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
