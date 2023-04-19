@@ -85,30 +85,37 @@ namespace Game2048.ViewModel
                 //MoveTop();
             }
 
-            Move(direction);
+            if (!Move(direction)) 
+            {
+                direction = MovementDirection.None;
+            }
 
             return direction;
 
         }
 
 
-        public void Move(MovementDirection direction)
+        public bool Move(MovementDirection direction)
         {
+            bool isMoved = false;
             for (int i = 0; i < Size; i++)
             {
                 if (direction == MovementDirection.Left)
-                    MoveLeft();
+                    isMoved|=MoveLeft();
                 if (direction == MovementDirection.Right)
-                    MoveToRight();
+                    isMoved |= MoveToRight();
                 if (direction == MovementDirection.Top)
-                    MoveTop();
+                    isMoved |= MoveTop();
                 if (direction == MovementDirection.Bottom)
-                    MoveBottom();
+                    isMoved |= MoveBottom();
             }
+            return isMoved;
+
         }
 
-        public void MoveToRight()
+        public bool MoveToRight()
         {
+            bool isMoved = false;
             int value = 0;
             for (int i = 0; i < Size; i++)
             {
@@ -122,12 +129,14 @@ namespace Game2048.ViewModel
                         {
                             if (Matrix[i + 1, j] == 0)
                             {
+                                isMoved = true;
                                 Matrix[i + 1, j] = value;
                                 Matrix[i, j] = 0;
 
                             }
                             else if (Matrix[i + 1, j] == Matrix[i, j])
                             {
+                                isMoved = true;
                                 Matrix[i + 1, j] = value * 2;
                                 Matrix[i, j] = 0;
                             }
@@ -142,10 +151,12 @@ namespace Game2048.ViewModel
                     }
                 }
             }
+            return isMoved;
         }
 
-        public void MoveTop()
+        public bool MoveTop()
         {
+            bool isMoved = false;
             int value = 0;
             for (int i = 0; i < Size; i++)
             {
@@ -159,12 +170,14 @@ namespace Game2048.ViewModel
                         {
                             if (Matrix[i, j - 1] == 0)
                             {
+                                isMoved = true;
                                 Matrix[i, j - 1] = value;
                                 Matrix[i, j] = 0;
 
                             }
                             else if (Matrix[i, j - 1] == Matrix[i, j])
                             {
+                                isMoved = true;
                                 Matrix[i, j - 1] = value * 2;
                                 Matrix[i, j] = 0;
                             }
@@ -178,10 +191,12 @@ namespace Game2048.ViewModel
                 }
 
             }
+            return isMoved;
         }
 
-        public void MoveBottom()
+        public bool MoveBottom()
         {
+            bool isMoved = false;
             int value = 0;
             for (int i = 0; i < Size; i++)
             {
@@ -195,12 +210,14 @@ namespace Game2048.ViewModel
                         {
                             if (Matrix[i, j + 1] == 0)
                             {
+                                isMoved = true;
                                 Matrix[i, j + 1] = value;
                                 Matrix[i, j] = 0;
 
                             }
                             else if (Matrix[i, j + 1] == Matrix[i, j])
                             {
+                                isMoved = true;
                                 Matrix[i, j + 1] = value * 2;
                                 Matrix[i, j] = 0;
                             }
@@ -215,11 +232,12 @@ namespace Game2048.ViewModel
                     }
                 }
             }
+            return isMoved;
         }
 
-        public void MoveLeft()
+        public bool MoveLeft()
         {
-
+            bool isMoved = false;
             int value = 0;
             for (int i = Size - 1; i > -1; i--)
             {
@@ -233,12 +251,14 @@ namespace Game2048.ViewModel
                         {
                             if (Matrix[i - 1, j] == 0)
                             {
+                                isMoved =true;
                                 Matrix[i - 1, j] = value;
                                 Matrix[i, j] = 0;
 
                             }
                             else if (Matrix[i - 1, j] == Matrix[i, j])
                             {
+                                isMoved =true;
                                 Matrix[i - 1, j] = value * 2;
                                 Matrix[i, j] = 0;
                             }
@@ -253,6 +273,7 @@ namespace Game2048.ViewModel
                     }
                 }
             }
+            return isMoved;
 
 
 
