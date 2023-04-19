@@ -314,6 +314,46 @@ namespace Game2048.ViewModel
             return false;
         }
 
+        public bool IsEnded() 
+        {
+            bool isMoveExists = false;
+
+            for (int i = 0; i < Size; i++)
+            {
+
+                if(isMoveExists) 
+                {
+                    break;
+                }
+                for (int j = 0; j < Size; j++)
+                {
+
+                    if (i + 1 < Size && Matrix[i, j] == Matrix[i + 1, j] )
+                    {
+                        isMoveExists = true;
+                        break;
+                    }
+                    else if (j+1 < Size && Matrix[i, j] == Matrix[i, j + 1])
+                    {
+                        isMoveExists = true;
+                        break;
+                    }
+                    else if (j-1 > -1 && Matrix[i, j] == Matrix[i, j - 1])
+                    {
+                        isMoveExists = true;
+                        break;
+                    }
+                    else if (i-1 > -1 && Matrix[i, j] == Matrix[i - 1, j]) 
+                    {
+                        isMoveExists = true;
+                        break;
+                    }
+                }
+               
+            }
+            return !isMoveExists;
+        }
+
 
 
 
@@ -324,7 +364,10 @@ namespace Game2048.ViewModel
             int y = 0;
             if (!IsSpace())
             {
-
+                if (IsEnded()) 
+                {
+                   
+                }                 
                 return;
             }
             do

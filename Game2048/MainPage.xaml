@@ -23,7 +23,8 @@
                             MaximumHeightRequest="{Binding BoardSize}"
                             MaximumWidthRequest="{Binding BoardSize}" BackgroundColor="#DB4949"
                             StartInteraction="GraphicsView_StartInteraction"
-                            EndInteraction="GraphicsView_EndInteraction" IsEnabled="True"
+                            EndInteraction="GraphicsView_EndInteraction"
+                             IsEnabled="True"
                             
                             
                           />
