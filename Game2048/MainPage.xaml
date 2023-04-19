@@ -15,13 +15,16 @@
             Padding="30,0"
             VerticalOptions="Center">
 
-            <GraphicsView   Drawable="{StaticResource drawable}"  
+            <GraphicsView x:Name="BoardView"  Drawable="{StaticResource drawable}"  
                       HeightRequest="{Binding BoardSize}"
                       WidthRequest="{Binding BoardSize}"
                             MinimumHeightRequest="{Binding BoardSize}"
                             MinimumWidthRequest="{Binding BoardSize}"
                             MaximumHeightRequest="{Binding BoardSize}"
                             MaximumWidthRequest="{Binding BoardSize}" BackgroundColor="#DB4949"
+                            StartInteraction="GraphicsView_StartInteraction"
+                            EndInteraction="GraphicsView_EndInteraction" IsEnabled="True"
+                            
                           />
 
         </VerticalStackLayout>
